@@ -1,12 +1,24 @@
 def isWordGuessed(secretWord, lettersGuessed):
-
-    for letter in secretWord:
     
-        if not (letter in lettersGuessed):
+    for letter in secretWord:
         
-            return False
+        if not (letter in lettersGuessed):
             
-    return True
+            return False
+        
+        return True
+    
+def getAvailableLetters(lettersGuessed):
+
+    string = ''
+    
+    for letter in string.ascii_lowercase:
+        
+        if not (letter in lettersGuessed):
+            
+            string += letter
+            
+    return string
     
 def getGuessedWord(secretWord, lettersGuessed):
 
@@ -23,19 +35,7 @@ def getGuessedWord(secretWord, lettersGuessed):
             string += '_'
             
     return string
-    
-def getAvailableLetters(lettersGuessed):
-
-    string = ''
-    
-    for letter in string.ascii_lowercase:
-        
-        if not (letter in lettersGuessed):
-            
-            string += letter
-            
-    return string
-    
+ 
 def hangman(secretWord):
 
   availableLetters = string.ascii_lowercase
@@ -60,16 +60,16 @@ def hangman(secretWord):
         
     if guess in lettersGuessed:
         
-    print("Oops! You've already guessed that letter:", getGuessedWord(secretWord, lettersGuessed))
-    print('-----------')
+        print("Oops! You've already guessed that letter:", getGuessedWord(secretWord, lettersGuessed))
+        print('-----------')
             
     elif guess in availableLetters:
         
-      #insere 
-      lettersGuessed += guess
+        #insere 
+        lettersGuessed += guess
 
-      #atualiza
-      availableLetters = getAvailableLetters(lettersGuessed)
+        #atualiza
+        availableLetters = getAvailableLetters(lettersGuessed)
            
         if guess in secretWord:
             
@@ -81,6 +81,7 @@ def hangman(secretWord):
            
           print('Oops! That letter is not in my word:', getGuessedWord(secretWord, lettersGuessed))
           print('-----------')
+        
                 numGuesses -= 1
                 
                 if numGuesses == 0:
